@@ -3,8 +3,10 @@ package com.chang.adapter.impl;
 import com.chang.dal.dao.UsersMapper;
 import com.chang.dal.model.Users;
 import com.chang.dal.model.UsersExample;
+import com.chang.facade.dto.request.UserRequestDTO;
 import com.chang.facade.dto.response.UserResponseDTO;
 import com.chang.facade.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +36,16 @@ public class UserServiceImpl implements UserService {
         }
 
         return userResponseDTOS;
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public void addUser(UserRequestDTO requestDTO) throws Exception {
+        if (requestDTO==null){
+            throw new Exception("添加用户信息不能为空！");
+        }
+        Users users=new Users();
+        BeanUtils.copyProperties(requestDTO,users );
+        usersMapper.insertSelective(users);
     }
 }

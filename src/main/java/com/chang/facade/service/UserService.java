@@ -1,5 +1,6 @@
 package com.chang.facade.service;
 
+import com.chang.facade.dto.request.UserRequestDTO;
 import com.chang.facade.dto.response.UserResponseDTO;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface UserService {
      * @return
      */
     List<UserResponseDTO> selectAll()throws Exception;
+
+    void addUser(UserRequestDTO requestDTO)throws Exception;
 }

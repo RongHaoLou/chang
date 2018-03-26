@@ -1,13 +1,22 @@
 package com.chang.facade.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @author 常培兵
  * @Description: 全局返回json格式
  * @date 2018/3/22 10:06
  */
+@ApiModel(value = "响应", description = "接口调用响应")
 public class ResponseDTOWrapper {
+    @ApiModelProperty(value = "是否成功")
     private boolean success;        //是否成功
+
+    @ApiModelProperty(value = "返回数据")
     private Object data;            //返回数据
+
+    @ApiModelProperty(value = "返回描述")
     private String message;         //返回信息
 
     public ResponseDTOWrapper(boolean success, Object data, String message) {
