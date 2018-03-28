@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
             throw new Exception("添加用户信息不能为空！");
         }
         Users users=new Users();
-        BeanUtils.copyProperties(requestDTO,users );
+        BeanUtils.copyProperties(requestDTO,users);
         usersMapper.insertSelective(users);
     }
 }
