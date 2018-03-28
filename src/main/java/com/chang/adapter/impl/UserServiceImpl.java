@@ -32,9 +32,7 @@ public class UserServiceImpl implements UserService {
         List<UserResponseDTO> userResponseDTOS=new ArrayList<>();
         for (Users user : users){
             userResponseDTOS.add(new UserResponseDTO(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getPhone()));
-            throw new Exception("抛出异常！");
         }
-
         return userResponseDTOS;
     }
 
