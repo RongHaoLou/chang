@@ -1,13 +1,17 @@
 package com.chang.facade.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.Map;
 
 /**
  * @author 常培兵
  * @Description: 全局返回json格式
  * @date 2018/3/22 10:06
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "响应", description = "接口调用响应")
 public class ResponseDTOWrapper {
     @ApiModelProperty(value = "是否成功")
@@ -19,9 +23,21 @@ public class ResponseDTOWrapper {
     @ApiModelProperty(value = "返回描述")
     private String message;         //返回信息
 
+    @ApiModelProperty(value = "错误参数")
+    private Map<String, String> argErrors;
+
     public ResponseDTOWrapper(boolean success, Object data, String message) {
         this.success = success;
         this.data = data;
+        this.message = message;
+    }
+    public ResponseDTOWrapper(boolean success, String message, Map<String, String> argErrors) {
+        this.success = success;
+        this.message = message;
+        this.argErrors=argErrors;
+    }
+    public ResponseDTOWrapper(boolean success, String message) {
+        this.success = success;
         this.message = message;
     }
 
@@ -71,5 +87,17 @@ public class ResponseDTOWrapper {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public Map<String, String> getArgErrors() {
+        return argErrors;
+    }
+
+    public void setArgErrors(Map<String, String> argErrors) {
+        this.argErrors = argErrors;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletRegistration;
 
 /**
  * @author 常培兵
@@ -43,6 +44,16 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
         encodingServlet.addMappingForUrlPatterns(null, true, "/*");
 
         return super.registerServletFilter(servletContext, filter);
+    }
+
+    /**
+     * 把异常抛出去,交给GlobalExceptionController处理
+     *
+     * @param registration
+     */
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
     }
 
 }

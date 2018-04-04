@@ -48,11 +48,11 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
      * 支持对静态资源的访问
      * @param configurer
      */
-    @Override
+  /*  @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+        configurer
     }
-
+*/
     /**
      * spring 方法参数验证
      * @return
