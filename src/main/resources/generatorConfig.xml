@@ -11,9 +11,9 @@
     <context id="default" targetRuntime="MyBatis3">
         <plugin type="com.qiukeke.mybatis.plugins.MySQLLimitPlugin"/>
 
-        <!-- optional，旨在创建class时，对注释进行控制 -->
         <commentGenerator>
-            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
 
@@ -39,9 +39,6 @@
 
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
-
-            <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
-            <property name="immutable" value="false"/>
 
             <!-- 给Model添加一个父类 -->
             <!--<property name="rootClass" value="com.foo.louis.Hello"/>-->

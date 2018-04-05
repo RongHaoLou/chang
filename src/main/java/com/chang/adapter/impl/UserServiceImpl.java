@@ -1,8 +1,8 @@
 package com.chang.adapter.impl;
 
-import com.chang.dal.dao.UsersMapper;
-import com.chang.dal.model.Users;
-import com.chang.dal.model.UsersExample;
+import com.chang.dal.dao.UserMapper;
+import com.chang.dal.model.User;
+import com.chang.dal.model.UserExample;
 import com.chang.facade.dto.request.UserRequestDTO;
 import com.chang.facade.dto.response.UserResponseDTO;
 import com.chang.facade.service.UserService;
@@ -23,15 +23,15 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UsersMapper usersMapper;
+    private UserMapper userMapper;
 
     @Override
     public List<UserResponseDTO> selectAll() throws Exception{
-        UsersExample usersExample=new UsersExample();
-        List<Users> users=usersMapper.selectByExample(usersExample);
+        UserExample usersExample=new UserExample();
+        List<User> users=userMapper.selectByExample(usersExample);
         List<UserResponseDTO> userResponseDTOS=new ArrayList<>();
-        for (Users user : users){
-            userResponseDTOS.add(new UserResponseDTO(user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getPhone()));
+        for (User user : users){
+            userResponseDTOS.add(new UserResponseDTO(user.getId(),user.getName(),user.getPassword(),user.getRole()));
         }
         return userResponseDTOS;
     }
@@ -42,8 +42,15 @@ public class UserServiceImpl implements UserService {
         if (requestDTO==null){
             throw new Exception("添加用户信息不能为空！");
         }
-        Users users=new Users();
+        User users=new User();
         BeanUtils.copyProperties(requestDTO,users);
-        usersMapper.insertSelective(users);
+        userMapper.insertSelective(users);
+    }
+    @Override
+    public UserResponseDTO selectByName(String name) throws Exception{
+        User users=userMapper.selectByUsername(name);
+        UserResponseDTO responseDTO=new UserResponseDTO();
+        BeanUtils.copyProperties(users,responseDTO);
+        return responseDTO;
     }
 }

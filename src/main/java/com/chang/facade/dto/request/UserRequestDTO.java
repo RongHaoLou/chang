@@ -21,11 +21,9 @@ public class UserRequestDTO {
     @ApiModelProperty(value = "密码")
     private String password;
 
-    @ApiModelProperty(value = "邮箱")
-    private String email;
-
-    @ApiModelProperty(value = "手机号")
-    private Integer phone;
+    @NotBlank(message = "角色不能为空")
+    @ApiModelProperty(value = "角色")
+    private String role;
 
     public String getName() {
         return name;
@@ -43,19 +41,11 @@ public class UserRequestDTO {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRole() {
+        return role;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

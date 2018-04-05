@@ -9,8 +9,17 @@ public class UserResponseDTO {
     private Integer id;
     private String name;
     private String password;
-    private String email;
-    private Integer phone;
+    private String role;
+
+    public UserResponseDTO(Integer id, String name, String password, String role) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
+
+    public UserResponseDTO() {
+    }
 
     public Integer getId() {
         return id;
@@ -36,31 +45,12 @@ public class UserResponseDTO {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRole() {
+        return role;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
-
-    public UserResponseDTO(Integer id, String name, String password, String email, Integer phone) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-    }
-
-    public UserResponseDTO() {
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

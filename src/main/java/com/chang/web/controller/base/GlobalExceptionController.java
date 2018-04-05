@@ -52,6 +52,11 @@ public class GlobalExceptionController extends ResponseEntityExceptionHandler {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 
+    /**
+     * 其他异常处理
+     * @param ex
+     * @return
+     */
     @ExceptionHandler({Exception.class})
     protected ResponseDTOWrapper allException(Exception ex) {
         ResponseDTOWrapper responseDTOWrapper = new ResponseDTOWrapper();

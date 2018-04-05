@@ -35,4 +35,10 @@ public class UserController  extends BaseController{
         return  createResponse();
     }
 
+    @ApiOperation(value = "查询用户信息", response = ResponseDTOWrapper.class, notes = "按照用户名查询所有用户信息")
+    @GetMapping("{name}")
+    public ResponseDTOWrapper findByName(@PathVariable String name) throws Exception{
+        return createResponse(userService.selectByName(name));
+    }
+
 }

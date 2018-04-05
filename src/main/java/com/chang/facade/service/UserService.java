@@ -18,4 +18,6 @@ public interface UserService {
     List<UserResponseDTO> selectAll()throws Exception;
 
     void addUser(UserRequestDTO requestDTO)throws Exception;
+
+    UserResponseDTO selectByName(String name) throws Exception;
 }
