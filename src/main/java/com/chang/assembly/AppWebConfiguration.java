@@ -40,8 +40,8 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
         //addResourceLocations指的是文件放置的目录，addResoureHandler指的是对外暴露的访问路径
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
-       /* registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");*/
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**
