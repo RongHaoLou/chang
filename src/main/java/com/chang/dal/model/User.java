@@ -1,6 +1,5 @@
 package com.chang.dal.model;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 public class User {
     private Integer id;
@@ -22,9 +21,6 @@ public class User {
         super();
     }
 
-    public User(String name, String password, SimpleGrantedAuthority simpleGrantedAuthority) {
-
-    }
 
     public Integer getId() {
         return id;
