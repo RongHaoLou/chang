@@ -1,6 +1,5 @@
 package com.chang.dal.model;
 
-
 public class User {
     private Integer id;
 
@@ -20,7 +19,6 @@ public class User {
     public User() {
         super();
     }
-
 
     public Integer getId() {
         return id;

@@ -32,6 +32,6 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    @Select("SELECT * FROM `user` WHERE name=#{username} ")
+    @Select("SELECT * FROM `user` WHERE NAME=#{username} ")
     User selectByUsername(@Param("username") String username);
 }
