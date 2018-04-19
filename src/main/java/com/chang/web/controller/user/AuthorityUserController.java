@@ -40,9 +40,5 @@ public class AuthorityUserController extends BaseController{
     public ResponseDTOWrapper findByName(@PathVariable String name) throws Exception{
         return createResponse(authorityUserService.selectByName(name));
     }
-    @RequestMapping(value="/login", method=RequestMethod.GET)
-    public ModelAndView login(){
-        ModelAndView mv = new ModelAndView("login");
-        return mv;
-    }
+
 }
