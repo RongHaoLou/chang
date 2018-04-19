@@ -1,13 +1,13 @@
 package com.chang.web.controller.user;
 
 import com.chang.facade.dto.ResponseDTOWrapper;
-import com.chang.facade.dto.request.UserRequestDTO;
-import com.chang.facade.service.UserService;
+import com.chang.facade.dto.request.AuthorityUserRequestDTO;
+import com.chang.facade.service.AuthorityUserService;
 import com.chang.web.controller.base.BaseController;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -18,27 +18,31 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("user")
-public class UserController  extends BaseController{
+public class AuthorityUserController extends BaseController{
 
     @Autowired
-    private UserService userService;
+    private AuthorityUserService authorityUserService;
 
     @ApiOperation(value = "查询所有用户信息", response = ResponseDTOWrapper.class, notes = "查询所有用户信息")
     @GetMapping
     public ResponseDTOWrapper search() throws Exception {
-        return createResponse(userService.selectAll());
+        return createResponse(authorityUserService.selectAll());
     }
     @ApiOperation(value = "添加用户信息", response = ResponseDTOWrapper.class, notes = "添加用户信息")
     @PostMapping
-    public ResponseDTOWrapper addUser(@RequestBody @Valid UserRequestDTO requestDTO) throws Exception {
-        userService.addUser(requestDTO);
+    public ResponseDTOWrapper addUser(@RequestBody @Valid AuthorityUserRequestDTO requestDTO) throws Exception {
+        authorityUserService.insertSelective(requestDTO);
         return  createResponse();
     }
 
     @ApiOperation(value = "查询用户信息", response = ResponseDTOWrapper.class, notes = "按照用户名查询所有用户信息")
     @GetMapping("{name}")
     public ResponseDTOWrapper findByName(@PathVariable String name) throws Exception{
-        return createResponse(userService.selectByName(name));
+        return createResponse(authorityUserService.selectByName(name));
     }
-
+    @RequestMapping(value="/login", method=RequestMethod.GET)
+    public ModelAndView login(){
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
+    }
 }

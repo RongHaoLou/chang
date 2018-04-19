@@ -1,4 +1,4 @@
-package com.chang.assembly;
+package com.chang.assembly.db;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import org.apache.ibatis.annotations.Mapper;

@@ -1,6 +1,9 @@
 package com.chang.assembly;
 
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.chang.assembly.db.DataSourceConfig;
+import com.chang.assembly.mvc.AppWebConfiguration;
+import com.chang.assembly.security.SecurityConfig;
 import com.chang.assembly.websocket.WebSocketConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -18,7 +21,7 @@ import javax.servlet.ServletRegistration;
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{DataSourceConfig.class};
+        return new Class[]{DataSourceConfig.class,SecurityConfig.class};
     }
 
     @Override

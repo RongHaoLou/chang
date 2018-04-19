@@ -1,4 +1,4 @@
-package com.chang.assembly;
+package com.chang.assembly.mvc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,6 +42,8 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/view/**")
+                .addResourceLocations("/view/");
     }
 
     /**
@@ -77,7 +79,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
-        bean.setPrefix("/view/");
+        bean.setPrefix("/view/pages/");
         bean.setSuffix(".jsp");
         return bean;
     }
