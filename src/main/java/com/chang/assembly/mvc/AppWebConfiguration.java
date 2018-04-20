@@ -1,5 +1,6 @@
 package com.chang.assembly.mvc;
 
+import com.chang.assembly.mvc.interceptor.RateLimitingInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -82,5 +83,23 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
         bean.setPrefix("/view/pages/");
         bean.setSuffix(".jsp");
         return bean;
+    }
+
+    /**
+     * 拦截器
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(rateLimitingInterceptor());
+    }
+
+    /**
+     * 自定义拦截器
+     * @return
+     */
+    @Bean
+    public RateLimitingInterceptor rateLimitingInterceptor() {
+        return new RateLimitingInterceptor();
     }
 }
