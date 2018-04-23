@@ -4,7 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Web Socket</title>
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <%--<script type="text/javascript">
         //Open the web socket connection to the server
         var socketConn = new WebSocket('ws://localhost:8080/socketHandler');
 
@@ -22,6 +23,23 @@
             var serverMsg = document.getElementById('serverMsg');
             serverMsg.value += event.data;
         }
+    </script>--%>
+    <script type="text/javascript">
+        var sock = new SockJS('/socketHandler');
+
+        function send() {
+            var clientMsg = document.getElementById('clientMsg');
+            if (clientMsg.value) {
+                sock.send(clientMsg.value);
+                clientMsg.value = '';
+            }
+        }
+
+        sock.onmessage = function(event) {
+            var serverMsg = document.getElementById('serverMsg');
+            serverMsg.value += event.data;
+        }
+
     </script>
 </head>
 <body>

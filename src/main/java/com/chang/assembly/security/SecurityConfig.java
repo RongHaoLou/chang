@@ -41,7 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     /**
      * 配置权限要求
-     * 采用注解方式，默认开启csrf
      * @param http
      * @throws Exception
      */
@@ -55,6 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html",
                         "/swagger/v2/**",
                         "/view/resources/**",
+                        "/view/pages/index.jsp",
+                        "/socketHandler/**",
                         "/login/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

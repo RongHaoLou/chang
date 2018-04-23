@@ -1,6 +1,7 @@
 package com.chang.assembly;
 
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.chang.assembly.scheduled.ScheduledConfig;
 import com.chang.assembly.db.DataSourceConfig;
 import com.chang.assembly.mvc.AppWebConfiguration;
 import com.chang.assembly.security.SecurityConfig;
@@ -26,7 +27,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{AppWebConfiguration.class, WebSocketConfig.class};
+        return new Class[]{AppWebConfiguration.class, WebSocketConfig.class,ScheduledConfig.class};
     }
 
     @Override
